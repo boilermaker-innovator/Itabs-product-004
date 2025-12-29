@@ -3,868 +3,939 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iTabs - Make 100</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --itabs-blue: #0066cc;
-            --itabs-blue-dark: #004499;
-            --itabs-glow: rgba(0, 102, 204, 0.12);
-            --kickstarter-green: #05ce78;
-            --gold: #f5a623;
-            --dark: #0f1a2e;
-            --white: #ffffff;
-            --light-bg: #f5f8fc;
-            --text: #2d3748;
-            --text-light: #64748b;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Baratec iTabs - Mechanical Contractors Perth</title>
 
 ```
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
 
+    :root {
+        --baratec-orange: #FF6B00;
+        --baratec-dark: #1A1A1A;
+        --baratec-steel: #2D2D2D;
+        --baratec-light: #F5F5F5;
+        --baratec-accent: #FF8533;
+    }
+
     body {
-        font-family: 'DM Sans', sans-serif;
-        background: var(--light-bg);
-        color: var(--text);
-        line-height: 1.7;
+        font-family: 'Barlow', sans-serif;
+        background: linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 50%, #2D2D2D 100%);
+        min-height: 100vh;
+        padding: 20px;
+        color: var(--baratec-light);
     }
 
     /* Header */
-    .campaign-header {
-        background: linear-gradient(135deg, var(--dark) 0%, #1a2a4a 100%);
-        color: white;
-        padding: 60px 20px 80px;
+    .baratec-header {
         text-align: center;
-        position: relative;
-        overflow: hidden;
+        margin-bottom: 30px;
+        padding: 20px;
+        background: linear-gradient(90deg, transparent, rgba(255, 107, 0, 0.1), transparent);
+        border-top: 3px solid var(--baratec-orange);
+        border-bottom: 1px solid rgba(255, 107, 0, 0.3);
     }
 
-    .campaign-header::before {
-        content: '';
+    .baratec-logo {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 48px;
+        letter-spacing: 8px;
+        color: var(--baratec-orange);
+        text-shadow: 0 0 30px rgba(255, 107, 0, 0.5);
+        margin-bottom: 5px;
+    }
+
+    .baratec-tagline {
+        font-size: 14px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* iTabs Container */
+    .itabs-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    /* Service Carousel */
+    .service-carousel {
+        position: relative;
+        width: 100%;
+        height: 450px;
+        border-radius: 12px;
+        overflow: hidden;
+        background: var(--baratec-steel);
+        box-shadow: 
+            0 20px 60px rgba(0, 0, 0, 0.5),
+            0 0 0 1px rgba(255, 107, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    /* Slides */
+    .slide {
         position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+    }
+
+    .slide.active {
+        opacity: 1;
+    }
+
+    .slide-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.7) contrast(1.1);
+    }
+
+    /* Service Title Overlay */
+    .slide-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 30px;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    }
+
+    .service-number {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 72px;
+        color: var(--baratec-orange);
+        opacity: 0.3;
+        line-height: 1;
+        margin-bottom: -20px;
+    }
+
+    .service-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 36px;
+        letter-spacing: 2px;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .service-brief {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 8px;
+        max-width: 80%;
+    }
+
+    /* Navigation Dots */
+    .carousel-nav {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        gap: 10px;
+        z-index: 10;
+    }
+
+    .nav-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-dot:hover {
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .nav-dot.active {
+        background: var(--baratec-orange);
+        box-shadow: 0 0 15px var(--baratec-orange);
+        transform: scale(1.2);
+    }
+
+    /* The "i" Button */
+    .itabs-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+        background: var(--baratec-orange);
+        border: none;
+        border-radius: 50%;
+        color: white;
+        font-family: 'Georgia', serif;
+        font-size: 32px;
+        font-style: italic;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 20;
+        box-shadow: 
+            0 4px 20px rgba(255, 107, 0, 0.5),
+            inset 0 2px 0 rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { 
+            transform: scale(1);
+            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.5);
+        }
+        50% { 
+            transform: scale(1.05);
+            box-shadow: 0 4px 30px rgba(255, 107, 0, 0.8);
+        }
+    }
+
+    .itabs-button:hover {
+        transform: scale(1.1);
+        animation: none;
+        box-shadow: 0 6px 30px rgba(255, 107, 0, 0.8);
+    }
+
+    /* Popup Overlay */
+    .popup-overlay {
+        position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        opacity: 0.5;
-    }
-
-    .header-content {
-        position: relative;
-        z-index: 1;
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
-    .make100-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: rgba(5, 206, 120, 0.15);
-        border: 1px solid var(--kickstarter-green);
-        color: var(--kickstarter-green);
-        padding: 8px 20px;
-        border-radius: 30px;
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: 24px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .campaign-title {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: clamp(2.2rem, 6vw, 3.5rem);
-        font-weight: 700;
-        margin-bottom: 20px;
-        line-height: 1.1;
-    }
-
-    .campaign-title .highlight {
-        color: var(--itabs-blue);
-    }
-
-    .campaign-subtitle {
-        font-size: 1.2rem;
-        color: rgba(255,255,255,0.8);
-        max-width: 550px;
-        margin: 0 auto 30px;
-    }
-
-    .reward-callout {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        background: linear-gradient(135deg, var(--itabs-blue) 0%, var(--itabs-blue-dark) 100%);
-        padding: 16px 32px;
-        border-radius: 50px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        box-shadow: 0 10px 40px rgba(0, 102, 204, 0.4);
-    }
-
-    .reward-callout .number {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 700;
-    }
-
-    /* Main Content */
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    .content-section {
-        background: white;
-        border-radius: 20px;
-        padding: 50px;
-        margin-top: -40px;
-        position: relative;
-        box-shadow: 0 10px 60px rgba(0,0,0,0.08);
-    }
-
-    h2 {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 1.6rem;
-        font-weight: 700;
-        color: var(--dark);
-        margin: 50px 0 24px;
-    }
-
-    h2:first-of-type {
-        margin-top: 0;
-    }
-
-    p {
-        margin-bottom: 20px;
-        font-size: 1.05rem;
-    }
-
-    /* iTabs Button */
-    .itab {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 20px;
-        height: 20px;
-        background: var(--itabs-blue);
-        color: white;
-        border-radius: 50%;
-        font-size: 12px;
-        font-weight: 700;
-        font-style: italic;
-        font-family: Georgia, serif;
-        cursor: pointer;
-        margin-left: 4px;
-        vertical-align: middle;
-        position: relative;
-        transition: all 0.2s ease;
-        box-shadow: 0 2px 10px rgba(0, 102, 204, 0.35);
-    }
-
-    .itab:hover {
-        transform: scale(1.2);
-        box-shadow: 0 4px 15px rgba(0, 102, 204, 0.5);
-    }
-
-    .itab::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background: var(--itabs-blue);
-        animation: pulse 2.5s infinite;
-        z-index: -1;
-    }
-
-    @keyframes pulse {
-        0% { transform: scale(1); opacity: 0.5; }
-        70% { transform: scale(1.8); opacity: 0; }
-        100% { transform: scale(1.8); opacity: 0; }
-    }
-
-    /* Vibe Coder Box */
-    .vibe-box {
-        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-        border-radius: 16px;
-        padding: 35px;
-        margin: 40px 0;
-        color: white;
-    }
-
-    .vibe-box h3 {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 1.4rem;
-        margin-bottom: 20px;
-        color: #a78bfa;
-    }
-
-    .vibe-box p {
-        color: rgba(255,255,255,0.85);
-        margin-bottom: 16px;
-    }
-
-    .vibe-box ul {
-        list-style: none;
-        padding: 0;
-        margin: 20px 0 0 0;
-    }
-
-    .vibe-box li {
-        padding: 10px 0;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        color: rgba(255,255,255,0.9);
-        font-size: 0.95rem;
-    }
-
-    .vibe-box li:last-child {
-        border-bottom: none;
-    }
-
-    .vibe-box li span {
-        color: #a78bfa;
-        margin-right: 10px;
-    }
-
-    /* Competition Box */
-    .competition-box {
-        background: #f8fafc;
-        border: 2px solid #e2e8f0;
-        border-radius: 16px;
-        padding: 30px;
-        margin: 40px 0;
-    }
-
-    .competition-box h3 {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 1.2rem;
-        color: var(--dark);
-        margin-bottom: 16px;
-    }
-
-    .competition-box p {
-        color: var(--text);
-        margin-bottom: 12px;
-    }
-
-    .competition-list {
-        list-style: none;
-        padding: 0;
-        margin: 20px 0 0 0;
-    }
-
-    .competition-list li {
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 12px 0;
-        border-bottom: 1px solid #e2e8f0;
-        font-size: 0.95rem;
-    }
-
-    .competition-list li:last-child {
-        border-bottom: none;
-    }
-
-    .competition-list .label {
-        font-weight: 600;
-        color: var(--dark);
-        min-width: 80px;
-    }
-
-    /* How It Works */
-    .steps {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        margin: 30px 0;
-    }
-
-    .step {
-        display: flex;
-        gap: 16px;
-        align-items: flex-start;
-        padding: 16px;
-        background: #f8fafc;
-        border-radius: 12px;
-    }
-
-    .step-number {
-        width: 36px;
-        height: 36px;
-        background: var(--itabs-blue);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Space Grotesk', sans-serif;
-        font-weight: 700;
-        font-size: 1rem;
-        flex-shrink: 0;
-    }
-
-    .step-content {
-        padding-top: 6px;
-    }
-
-    .step-content p {
-        margin: 0;
-        font-size: 1rem;
-    }
-
-    /* Simple CTA */
-    .cta-section {
-        text-align: center;
-        margin: 50px 0;
-        padding: 40px;
-        background: #f8fafc;
-        border-radius: 16px;
-    }
-
-    .cta-section p {
-        font-size: 1.1rem;
-        margin-bottom: 24px;
-        color: var(--text);
-    }
-
-    .cta-button {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        background: var(--itabs-blue);
-        color: white;
-        padding: 16px 40px;
-        border-radius: 50px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        text-decoration: none;
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .cta-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(0, 102, 204, 0.3);
-    }
-
-    /* Demo Banner */
-    .demo-banner {
-        background: var(--itabs-blue);
-        color: white;
-        padding: 12px 20px;
-        text-align: center;
-        font-size: 14px;
-    }
-
-    .demo-banner .itab-mini {
-        display: inline-flex;
-        width: 18px;
-        height: 18px;
-        background: white;
-        color: var(--itabs-blue);
-        border-radius: 50%;
-        font-size: 11px;
-        font-weight: bold;
-        font-style: italic;
-        align-items: center;
-        justify-content: center;
-        margin: 0 4px;
-    }
-
-    /* Footer */
-    .footer {
-        text-align: center;
-        padding: 40px 20px;
-        color: var(--text-light);
-        font-size: 0.85rem;
-    }
-
-    .footer a {
-        color: var(--itabs-blue);
-        text-decoration: none;
-    }
-
-    /* Popup Styles */
-    .popup-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.6);
-        z-index: 1000;
-        backdrop-filter: blur(4px);
-        animation: fadeIn 0.2s ease;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 100;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
     }
 
     .popup-overlay.active {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
+        opacity: 1;
+        visibility: visible;
     }
 
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    .popup {
-        background: white;
-        border-radius: 20px;
-        max-width: 480px;
-        width: 100%;
-        max-height: 80vh;
+    /* Popup Content */
+    .popup-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        width: 90%;
+        max-width: 500px;
+        max-height: 85vh;
         overflow-y: auto;
-        box-shadow: 0 25px 80px rgba(0,0,0,0.35);
-        animation: slideUp 0.3s ease;
+        background: linear-gradient(180deg, #2D2D2D 0%, #1A1A1A 100%);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 107, 0, 0.3);
+        box-shadow: 
+            0 30px 80px rgba(0, 0, 0, 0.8),
+            0 0 0 1px rgba(255, 107, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        transition: transform 0.3s ease;
     }
 
-    @keyframes slideUp {
-        from { transform: translateY(40px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
+    .popup-overlay.active .popup-content {
+        transform: translate(-50%, -50%) scale(1);
     }
 
+    /* Popup Header */
     .popup-header {
-        background: linear-gradient(135deg, var(--itabs-blue) 0%, var(--itabs-blue-dark) 100%);
-        color: white;
-        padding: 24px;
-        border-radius: 20px 20px 0 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .popup-header h3 {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 1.15rem;
-        font-weight: 600;
-    }
-
-    .popup-close {
-        background: rgba(255,255,255,0.15);
-        border: none;
-        color: white;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.2s;
-    }
-
-    .popup-close:hover {
-        background: rgba(255,255,255,0.25);
-    }
-
-    .popup-body {
-        padding: 28px;
-    }
-
-    .popup-body p {
-        margin-bottom: 16px;
-        font-size: 0.98rem;
-    }
-
-    .popup-body ul {
-        margin: 16px 0;
-        padding-left: 0;
-        list-style: none;
-    }
-
-    .popup-body li {
-        margin-bottom: 12px;
-        font-size: 0.95rem;
-        padding-left: 28px;
+        padding: 25px;
+        background: linear-gradient(90deg, var(--baratec-orange), var(--baratec-accent));
+        border-radius: 16px 16px 0 0;
         position: relative;
     }
 
-    .popup-body li::before {
-        content: '→';
+    .popup-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 36px;
+        height: 36px;
+        background: rgba(0, 0, 0, 0.3);
+        border: none;
+        border-radius: 50%;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }
+
+    .popup-close:hover {
+        background: rgba(0, 0, 0, 0.5);
+        transform: rotate(90deg);
+    }
+
+    .popup-service-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 28px;
+        letter-spacing: 2px;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    /* Popup Body */
+    .popup-body {
+        padding: 25px;
+    }
+
+    .info-section {
+        margin-bottom: 25px;
+    }
+
+    .info-section:last-child {
+        margin-bottom: 0;
+    }
+
+    .info-label {
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--baratec-orange);
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .info-label::before {
+        content: '';
+        width: 20px;
+        height: 2px;
+        background: var(--baratec-orange);
+    }
+
+    .info-content {
+        font-size: 15px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .info-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .info-list li {
+        padding: 8px 0;
+        padding-left: 20px;
+        position: relative;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .info-list li:last-child {
+        border-bottom: none;
+    }
+
+    .info-list li::before {
+        content: '▸';
         position: absolute;
         left: 0;
-        color: var(--itabs-blue);
-        font-weight: bold;
+        color: var(--baratec-orange);
     }
 
-    .popup-highlight {
-        background: var(--itabs-glow);
-        border-left: 3px solid var(--itabs-blue);
-        padding: 14px 18px;
-        border-radius: 0 10px 10px 0;
-        margin: 20px 0;
+    /* CTA Button */
+    .popup-cta {
+        display: block;
+        width: 100%;
+        padding: 18px;
+        background: linear-gradient(90deg, var(--baratec-orange), var(--baratec-accent));
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 20px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-decoration: none;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
     }
 
-    .popup-highlight strong {
-        color: var(--itabs-blue);
+    .popup-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(255, 107, 0, 0.5);
     }
 
-    /* Mobile */
+    /* Experience Badge */
+    .experience-badge {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        background: rgba(255, 107, 0, 0.1);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 107, 0, 0.2);
+        margin-top: 15px;
+    }
+
+    .exp-number {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 42px;
+        color: var(--baratec-orange);
+        line-height: 1;
+    }
+
+    .exp-text {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.4;
+    }
+
+    /* Small iTabs branding */
+    .itabs-branding {
+        position: absolute;
+        bottom: 15px;
+        left: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.4);
+        z-index: 10;
+    }
+
+    .itabs-branding-btn {
+        width: 18px;
+        height: 18px;
+        background: rgba(255, 255, 255, 0.15);
+        border: none;
+        border-radius: 50%;
+        color: rgba(255, 255, 255, 0.6);
+        font-family: 'Georgia', serif;
+        font-size: 11px;
+        font-style: italic;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .itabs-branding-btn:hover {
+        background: var(--baratec-orange);
+        color: white;
+    }
+
+    /* Contact Info in popup */
+    .contact-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .contact-row:last-child {
+        border-bottom: none;
+    }
+
+    .contact-icon {
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 107, 0, 0.15);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .contact-text {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .contact-text a {
+        color: var(--baratec-orange);
+        text-decoration: none;
+    }
+
+    .contact-text a:hover {
+        text-decoration: underline;
+    }
+
+    /* Mobile Responsive */
     @media (max-width: 600px) {
-        .content-section {
-            padding: 30px 24px;
+        .service-carousel {
+            height: 400px;
         }
 
-        .campaign-header {
-            padding: 40px 20px 60px;
+        .baratec-logo {
+            font-size: 36px;
+            letter-spacing: 5px;
         }
 
-        .vibe-box, .competition-box {
-            padding: 24px;
+        .service-number {
+            font-size: 48px;
         }
 
-        .cta-section {
-            padding: 30px 20px;
+        .service-title {
+            font-size: 28px;
         }
+
+        .itabs-button {
+            width: 48px;
+            height: 48px;
+            font-size: 28px;
+        }
+
+        .popup-content {
+            width: 95%;
+        }
+    }
+
+    /* Swipe hint */
+    .swipe-hint {
+        position: absolute;
+        bottom: 70px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        z-index: 5;
+    }
+
+    .swipe-hint::before,
+    .swipe-hint::after {
+        content: '←';
+        opacity: 0.5;
+    }
+
+    .swipe-hint::after {
+        content: '→';
     }
 </style>
 ```
 
 </head>
 <body>
-    <!-- Demo Banner -->
-    <div class="demo-banner">
-        Click the blue <span class="itab-mini">i</span> buttons to see iTabs in action
-    </div>
 
 ```
-<!-- Campaign Header -->
-<header class="campaign-header">
-    <div class="header-content">
-        <div class="make100-badge">
-            <span>🎯</span> Make 100 · January 2026
-        </div>
-        <h1 class="campaign-title">
-            <span class="highlight">iTabs</span><br>
-            Revenge of the Vibe Coders
-        </h1>
-        <p class="campaign-subtitle">
-            You don't need a developer. You don't need permission. You just need a problem worth solving.
-        </p>
-        <div class="reward-callout">
-            <span class="number">100</span>
-            <span>Free iTabs for Creators</span>
-        </div>
-    </div>
-</header>
+<!-- Header -->
+<div class="baratec-header">
+    <div class="baratec-logo">BARATEC</div>
+    <div class="baratec-tagline">Mechanical Contractors • Perth WA</div>
+</div>
 
-<!-- Main Content -->
-<main class="container">
-    <div class="content-section">
-
-        <h2>What's an iTabs?<span class="itab" data-popup="what-is-itabs">i</span></h2>
+<!-- iTabs Container -->
+<div class="itabs-container">
+    <div class="service-carousel" id="carousel">
         
-        <p>
-            It's that little blue button you just saw. Click it, get the explanation you need, keep going.
-        </p>
-        
-        <p>
-            Works on mobile.<span class="itab" data-popup="mobile">i</span> Handles complex info, not just definitions. Doesn't disappear when you move your finger.
-        </p>
-
-        <p>
-            People who need more context get it. People who don't aren't slowed down.
-        </p>
-
-        <div class="vibe-box">
-            <h3>Revenge of the Vibe Coders</h3>
-            <p>
-                This wasn't built by a dev team. No computer science degree. No startup funding. Just someone who kept hitting confusing content and thought "there has to be a better way."
-            </p>
-            <p>
-                Built with AI tools and stubbornness.<span class="itab" data-popup="vibe-coding">i</span>
-            </p>
-            <ul>
-                <li><span>→</span> Normal people can build real things now</li>
-                <li><span>→</span> The gatekeepers lost</li>
-                <li><span>→</span> You don't need permission</li>
-            </ul>
-        </div>
-
-        <h2>The Offer</h2>
-
-        <p>
-            100 free iTabs for 100 Make 100 creators.
-        </p>
-
-        <p>
-            You tell me about your project. I build you an iTabs that explains the confusing bits to your backers. You put it on your campaign page. Done.
-        </p>
-
-        <p>
-            No cost. No catch. Take it or leave it.<span class="itab" data-popup="why-free">i</span>
-        </p>
-
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <p>You're launching a Make 100 project in January 2026</p>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <p>You want help explaining your project to backers</p>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <p>I send you an iTabs built for your campaign</p>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-number">4</div>
-                <div class="step-content">
-                    <p>You use it or you don't. No hard feelings either way.</p>
-                </div>
+        <!-- Slide 1: Mobile Welding -->
+        <div class="slide active" data-service="welding">
+            <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=900&h=600&fit=crop" 
+                 alt="Mobile Welding and Fabrication" 
+                 class="slide-image">
+            <div class="slide-overlay">
+                <div class="service-number">01</div>
+                <div class="service-title">Mobile Welding & Fabrication</div>
+                <div class="service-brief">Stainless, Structural, Aluminum • Mining & Industrial</div>
             </div>
         </div>
 
-        <h2>The Competition<span class="itab" data-popup="competition">i</span></h2>
-
-        <div class="competition-box">
-            <h3>Free to enter. No judges. Backers decide.</h3>
-            <ul class="competition-list">
-                <li>
-                    <span class="label">Who:</span>
-                    <span>Any Make 100 creator using iTabs</span>
-                </li>
-                <li>
-                    <span class="label">How:</span>
-                    <span>Whoever gets furthest past their funding goal<span class="itab" data-popup="scoring">i</span></span>
-                </li>
-                <li>
-                    <span class="label">Cost:</span>
-                    <span>Nothing</span>
-                </li>
-                <li>
-                    <span class="label">Twist:</span>
-                    <span>I'm in it too. You might beat me with my own tool.<span class="itab" data-popup="twist">i</span></span>
-                </li>
-            </ul>
-        </div>
-
-        <p>
-            Everyone's already trying to hit their funding goal. The competition just measures what's already happening. No extra pressure. No extra work.
-        </p>
-
-        <p>
-            Even getting halfway is a win. Your campaign was clearer than it would have been without iTabs.
-        </p>
-
-        <!-- CTA Section -->
-        <div class="cta-section">
-            <p>Launching something in Make 100?<br>Want an iTabs for your campaign?</p>
-            <a href="#" class="cta-button">
-                <span>I'm In</span>
-            </a>
-        </div>
-
-        <p style="text-align: center; color: var(--text-light); font-size: 0.95rem;">
-            Or don't. Either way, good luck with your project.
-        </p>
-
-    </div>
-</main>
-
-<!-- Footer -->
-<footer class="footer">
-    <p>iTabs · Make 100 · January 2026</p>
-    <p><a href="https://itabs.ai">itabs.ai</a></p>
-</footer>
-
-<!-- Popups -->
-<div class="popup-overlay" id="popup-what-is-itabs">
-    <div class="popup">
-        <div class="popup-header">
-            <h3>iTabs</h3>
-            <button class="popup-close" onclick="closePopup('what-is-itabs')">×</button>
-        </div>
-        <div class="popup-body">
-            <p><strong>Information Enhancement Technology</strong></p>
-            <p>A clickable button that reveals helpful info exactly when someone needs it.</p>
-            <p>Unlike tooltips:</p>
-            <ul>
-                <li>Works on mobile (tap, don't hover)</li>
-                <li>Can hold rich content - stats, examples, images</li>
-                <li>Stays open until you close it</li>
-            </ul>
-            <div class="popup-highlight">
-                <strong>Simple version:</strong> Click the "i", get the info, keep reading.
+        <!-- Slide 2: Plant Maintenance -->
+        <div class="slide" data-service="maintenance">
+            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=900&h=600&fit=crop" 
+                 alt="Fixed and Mobile Plant Maintenance" 
+                 class="slide-image">
+            <div class="slide-overlay">
+                <div class="service-number">02</div>
+                <div class="service-title">Plant Maintenance</div>
+                <div class="service-brief">Fixed & Mobile Equipment • Preventive Solutions</div>
             </div>
+        </div>
+
+        <!-- Slide 3: CAD Design -->
+        <div class="slide" data-service="cad">
+            <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=900&h=600&fit=crop" 
+                 alt="CAD Design Services" 
+                 class="slide-image">
+            <div class="slide-overlay">
+                <div class="service-number">03</div>
+                <div class="service-title">CAD Design</div>
+                <div class="service-brief">Expert Design Team • Maximize Your Ideas</div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Custom Stainless -->
+        <div class="slide" data-service="stainless">
+            <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=900&h=600&fit=crop" 
+                 alt="Custom Stainless Steel Products" 
+                 class="slide-image">
+            <div class="slide-overlay">
+                <div class="service-number">04</div>
+                <div class="service-title">Custom Stainless Products</div>
+                <div class="service-brief">Shop Fitouts • Bars • Marine • Mining Extraction</div>
+            </div>
+        </div>
+
+        <!-- The "i" Button -->
+        <button class="itabs-button" id="infoBtn" title="Tap for details">i</button>
+
+        <!-- Navigation Dots -->
+        <div class="carousel-nav">
+            <div class="nav-dot active" data-slide="0"></div>
+            <div class="nav-dot" data-slide="1"></div>
+            <div class="nav-dot" data-slide="2"></div>
+            <div class="nav-dot" data-slide="3"></div>
+        </div>
+
+        <!-- Swipe Hint -->
+        <div class="swipe-hint">swipe</div>
+
+        <!-- iTabs Branding -->
+        <div class="itabs-branding">
+            <button class="itabs-branding-btn" title="What is iTabs?">i</button>
+            <span>Powered by iTabs</span>
         </div>
     </div>
 </div>
 
-<div class="popup-overlay" id="popup-mobile">
-    <div class="popup">
-        <div class="popup-header">
-            <h3>Mobile Friendly</h3>
-            <button class="popup-close" onclick="closePopup('mobile')">×</button>
-        </div>
-        <div class="popup-body">
-            <p>Most tooltips break on phones. They rely on "hover" - something you can't do on a touchscreen.</p>
-            <p>iTabs uses tap/click instead. Works everywhere:</p>
-            <ul>
-                <li>Phones</li>
-                <li>Tablets</li>
-                <li>Desktops</li>
-                <li>Whatever comes next</li>
-            </ul>
-            <div class="popup-highlight">
-                Most crowdfunding browsing happens on mobile. If your explanations don't work there, they don't work.
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="popup-overlay" id="popup-vibe-coding">
-    <div class="popup">
-        <div class="popup-header">
-            <h3>Vibe Coding</h3>
-            <button class="popup-close" onclick="closePopup('vibe-coding')">×</button>
-        </div>
-        <div class="popup-body">
-            <p>Building things with AI tools instead of traditional coding skills.</p>
-            <p>You describe what you want. AI helps you build it. You refine until it works.</p>
-            <ul>
-                <li>No syntax memorisation</li>
-                <li>No computer science degree</li>
-                <li>No dev team required</li>
-            </ul>
-            <div class="popup-highlight">
-                <strong>The catch:</strong> You still need to know what problem you're solving. AI handles the how. You handle the why.
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="popup-overlay" id="popup-why-free">
-    <div class="popup">
-        <div class="popup-header">
-            <h3>Why Free?</h3>
-            <button class="popup-close" onclick="closePopup('why-free')">×</button>
-        </div>
-        <div class="popup-body">
-            <p>This is Make 100. Small projects, proof of concept.</p>
-            <p>If iTabs helps campaigns fund better, that's worth more than charging for it now.</p>
-            <ul>
-                <li>100 creators using it = 100 data points</li>
-                <li>Real campaigns, real results</li>
-                <li>If it doesn't help, it's not worth selling anyway</li>
-            </ul>
-            <div class="popup-highlight">
-                <strong>Simple:</strong> Prove it works first. Figure out the rest later.
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="popup-overlay" id="popup-competition">
-    <div class="popup">
-        <div class="popup-header">
-            <h3>The Competition</h3>
-            <button class="popup-close" onclick="closePopup('competition')">×</button>
-        </div>
-        <div class="popup-body">
-            <p>A free competition running alongside Make 100.</p>
-            <p>Everything's opposite to how competitions usually work:</p>
-            <ul>
-                <li>You don't apply - you get invited</li>
-                <li>No entry fee</li>
-                <li>No judges - backers decide</li>
-                <li>No limited spots</li>
-                <li>Organiser is competing too</li>
-            </ul>
-            <div class="popup-highlight">
-                <strong>The point:</strong> Everyone's already chasing their funding goal. This just measures what's happening anyway.
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="popup-overlay" id="popup-scoring">
-    <div class="popup">
-        <div class="popup-header">
-            <h3>How Scoring Works</h3>
-            <button class="popup-close" onclick="closePopup('scoring')">×</button>
-        </div>
-        <div class="popup-body">
-            <p><strong>Funding percentage.</strong> How far past your goal you get.</p>
-            <p>Examples:</p>
-            <ul>
-                <li>Goal $1,000 → Raised $2,500 = 250%</li>
-                <li>Goal $5,000 → Raised $10,000 = 200%</li>
-            </ul>
-            <p>First one wins. You're competing against your own target, not someone else's budget.</p>
-            <div class="popup-highlight">
-                <strong>Even 50% is useful.</strong> You learned something. Your campaign was clearer. That's data.
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="popup-overlay" id="popup-twist">
-    <div class="popup">
-        <div class="popup-header">
-            <h3>The Twist</h3>
-            <button class="popup-close" onclick="closePopup('twist')">×</button>
-        </div>
-        <div class="popup-body">
-            <p>I'm entering Make 100 with iTabs. Which means I'm in my own competition.</p>
-            <p>Someone could beat me using the tool I gave them for free.</p>
-            <div class="popup-highlight">
-                <strong>That's not losing.</strong> That's the best possible proof iTabs works. Can't buy marketing like that.
-            </div>
-        </div>
+<!-- Popup Overlay -->
+<div class="popup-overlay" id="popupOverlay">
+    <div class="popup-content" id="popupContent">
+        <!-- Content populated by JavaScript -->
     </div>
 </div>
 
 <script>
-    // iTabs click handlers
-    document.querySelectorAll('.itab').forEach(tab => {
-        tab.addEventListener('click', function() {
-            const popupId = this.dataset.popup;
-            document.getElementById('popup-' + popupId).classList.add('active');
+    // Service Data
+    const services = {
+        welding: {
+            title: "Mobile Welding & Fabrication",
+            sections: [
+                {
+                    label: "What We Do",
+                    content: "On-site welding and fabrication services across Perth and WA. We bring the workshop to you - eliminating transport costs and downtime."
+                },
+                {
+                    label: "Materials We Work With",
+                    type: "list",
+                    items: [
+                        "Stainless Steel (all grades)",
+                        "Structural Steel",
+                        "Aluminum & Marine Grade Alloys",
+                        "Carbon Steel"
+                    ]
+                },
+                {
+                    label: "Industries Served",
+                    type: "list",
+                    items: [
+                        "Mining & Resources",
+                        "Industrial & Manufacturing",
+                        "Commercial & Architectural",
+                        "Marine & Offshore"
+                    ]
+                },
+                {
+                    label: "Why Choose Mobile",
+                    content: "No transport delays. No machinery downtime. We weld on-site so your equipment stays where it needs to be - working."
+                }
+            ]
+        },
+        maintenance: {
+            title: "Plant Maintenance",
+            sections: [
+                {
+                    label: "What We Do",
+                    content: "Complete mechanical maintenance for fixed and mobile plant equipment. We don't just fix problems - we prevent them."
+                },
+                {
+                    label: "Equipment We Service",
+                    type: "list",
+                    items: [
+                        "Crushing & Screening Plants",
+                        "Conveyors & Material Handling",
+                        "Industrial Machinery",
+                        "Mobile Equipment & Loaders"
+                    ]
+                },
+                {
+                    label: "Our Approach",
+                    content: "Proactive maintenance reduces downtime and extends equipment life. We identify issues before they become expensive breakdowns."
+                },
+                {
+                    label: "Response Time",
+                    content: "Breakdowns don't wait - neither do we. Rapid response across the Perth metro area and regional WA."
+                }
+            ]
+        },
+        cad: {
+            title: "CAD Design",
+            sections: [
+                {
+                    label: "What We Do",
+                    content: "Professional CAD design services that turn your concepts into detailed, buildable plans. From napkin sketches to precision drawings."
+                },
+                {
+                    label: "Design Services",
+                    type: "list",
+                    items: [
+                        "2D & 3D CAD Drawings",
+                        "Fabrication Drawings",
+                        "Structural Design",
+                        "Custom Product Design"
+                    ]
+                },
+                {
+                    label: "The Baratec Difference",
+                    content: "Our designers are also fabricators. We design with manufacturing in mind - saving time and money when it comes to building."
+                },
+                {
+                    label: "From Design to Reality",
+                    content: "One team handles design AND fabrication. No miscommunication. No delays. Your project stays on track."
+                }
+            ]
+        },
+        stainless: {
+            title: "Custom Stainless Products",
+            sections: [
+                {
+                    label: "What We Do",
+                    content: "Bespoke stainless steel fabrication for commercial, hospitality, marine, and industrial applications. Built to your exact specifications."
+                },
+                {
+                    label: "Products We Create",
+                    type: "list",
+                    items: [
+                        "Commercial Kitchen Fitouts",
+                        "Bar & Hospitality Equipment",
+                        "Marine Hardware & Fittings",
+                        "Mining Extraction Systems"
+                    ]
+                },
+                {
+                    label: "Quality Guarantee",
+                    content: "Food-grade finishes. Marine-grade durability. Every piece polished to perfection and built to last decades."
+                },
+                {
+                    label: "Custom = No Limits",
+                    content: "If you can imagine it, we can build it. Bring us your challenge - we'll engineer the solution."
+                }
+            ]
+        }
+    };
+
+    // Carousel State
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.nav-dot');
+    let autoplayInterval;
+
+    // Go to specific slide
+    function goToSlide(index) {
+        slides.forEach(s => s.classList.remove('active'));
+        dots.forEach(d => d.classList.remove('active'));
+        
+        currentSlide = index;
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+    }
+
+    // Next slide
+    function nextSlide() {
+        const next = (currentSlide + 1) % slides.length;
+        goToSlide(next);
+    }
+
+    // Previous slide
+    function prevSlide() {
+        const prev = (currentSlide - 1 + slides.length) % slides.length;
+        goToSlide(prev);
+    }
+
+    // Dot navigation
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            goToSlide(index);
+            resetAutoplay();
         });
     });
 
-    // Close popup
-    function closePopup(id) {
-        document.getElementById('popup-' + id).classList.remove('active');
+    // Touch/Swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const carousel = document.getElementById('carousel');
+
+    carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+            resetAutoplay();
+        }
+    }
+
+    // Autoplay
+    function startAutoplay() {
+        autoplayInterval = setInterval(nextSlide, 4000);
+    }
+
+    function resetAutoplay() {
+        clearInterval(autoplayInterval);
+        startAutoplay();
+    }
+
+    startAutoplay();
+
+    // Popup functionality
+    const infoBtn = document.getElementById('infoBtn');
+    const popupOverlay = document.getElementById('popupOverlay');
+    const popupContent = document.getElementById('popupContent');
+
+    infoBtn.addEventListener('click', () => {
+        const activeSlide = document.querySelector('.slide.active');
+        const serviceKey = activeSlide.dataset.service;
+        const service = services[serviceKey];
+        
+        let html = `
+            <div class="popup-header">
+                <button class="popup-close" id="closePopup">×</button>
+                <div class="popup-service-title">${service.title}</div>
+            </div>
+            <div class="popup-body">
+        `;
+
+        service.sections.forEach(section => {
+            html += `<div class="info-section">`;
+            html += `<div class="info-label">${section.label}</div>`;
+            
+            if (section.type === 'list') {
+                html += `<ul class="info-list">`;
+                section.items.forEach(item => {
+                    html += `<li>${item}</li>`;
+                });
+                html += `</ul>`;
+            } else {
+                html += `<div class="info-content">${section.content}</div>`;
+            }
+            
+            html += `</div>`;
+        });
+
+        // Add experience badge
+        html += `
+            <div class="experience-badge">
+                <div class="exp-number">20+</div>
+                <div class="exp-text">Years of hands-on<br>industry experience</div>
+            </div>
+        `;
+
+        // Add contact info
+        html += `
+            <div class="info-section" style="margin-top: 20px;">
+                <div class="info-label">Get In Touch</div>
+                <div class="contact-row">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-text"><a href="tel:0466681370">0466 681 370</a></div>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-icon">🌐</div>
+                    <div class="contact-text"><a href="https://www.baratec.com.au" target="_blank">www.baratec.com.au</a></div>
+                </div>
+            </div>
+        `;
+
+        html += `
+                <a href="https://www.baratec.com.au/contact" target="_blank" class="popup-cta">
+                    Enquire Online →
+                </a>
+            </div>
+        `;
+
+        popupContent.innerHTML = html;
+        popupOverlay.classList.add('active');
+
+        // Close button
+        document.getElementById('closePopup').addEventListener('click', closePopup);
+    });
+
+    function closePopup() {
+        popupOverlay.classList.remove('active');
     }
 
     // Close on overlay click
-    document.querySelectorAll('.popup-overlay').forEach(overlay => {
-        overlay.addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('active');
-            }
-        });
+    popupOverlay.addEventListener('click', (e) => {
+        if (e.target === popupOverlay) {
+            closePopup();
+        }
     });
 
-    // Close on Escape
-    document.addEventListener('keydown', function(e) {
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            document.querySelectorAll('.popup-overlay.active').forEach(popup => {
-                popup.classList.remove('active');
-            });
+            closePopup();
         }
+    });
+
+    // Small iTabs branding button
+    document.querySelector('.itabs-branding-btn').addEventListener('click', () => {
+        popupContent.innerHTML = `
+            <div class="popup-header" style="background: linear-gradient(90deg, #3B82F6, #2563EB);">
+                <button class="popup-close" id="closePopup">×</button>
+                <div class="popup-service-title">What is iTabs?</div>
+            </div>
+            <div class="popup-body">
+                <div class="info-section">
+                    <div class="info-label">Information Enhancement</div>
+                    <div class="info-content">
+                        iTabs turns complex information into visual, interactive experiences. 
+                        Instead of walls of text, users see images first - then tap the "i" button 
+                        to reveal organized details when they're ready.
+                    </div>
+                </div>
+                <div class="info-section">
+                    <div class="info-label">Perfect For</div>
+                    <ul class="info-list">
+                        <li>Business websites & services</li>
+                        <li>Product showcases</li>
+                        <li>Crowdfunding campaigns</li>
+                        <li>Anything that needs explaining</li>
+                    </ul>
+                </div>
+                <a href="https://itabs.ai" target="_blank" class="popup-cta" style="background: linear-gradient(90deg, #3B82F6, #2563EB);">
+                    Create Your Own iTabs →
+                </a>
+            </div>
+        `;
+        popupOverlay.classList.add('active');
+        document.getElementById('closePopup').addEventListener('click', closePopup);
     });
 </script>
 ```
