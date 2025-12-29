@@ -4,30 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iTabs Generator - Turn Walls of Text Into Tappable Magic</title>
+    <title>iTabs - Make 100</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --itabs-blue: #0066cc;
+            --itabs-blue-dark: #004499;
+            --itabs-glow: rgba(0, 102, 204, 0.12);
+            --kickstarter-green: #05ce78;
+            --gold: #f5a623;
+            --dark: #0f1a2e;
+            --white: #ffffff;
+            --light-bg: #f5f8fc;
+            --text: #2d3748;
+            --text-light: #64748b;
+        }
 
 ```
-<!-- Social sharing meta tags -->
-<meta property="og:title" content="iTabs Generator - Turn Walls of Text Into Tappable Magic">
-<meta property="og:description" content="Your Kickstarter campaign is drowning in words. Fix it in 3 minutes. AI-powered.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://itabsgenerator.gumroad.com/l/kickstarter">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="iTabs Generator">
-<meta name="twitter:description" content="Turn walls of text into tappable magic. AI-powered. 3 minutes.">
-
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-
-<style>
-    :root {
-        --mint: #00E896;
-        --mint-dark: #00C77D;
-        --charcoal: #1A1F25;
-        --slate: #2D3540;
-        --cream: #FDFCFA;
-        --warm-gray: #6B7280;
-    }
-
     * {
         margin: 0;
         padding: 0;
@@ -36,547 +29,505 @@
 
     body {
         font-family: 'DM Sans', sans-serif;
-        background: var(--charcoal);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 24px;
-        position: relative;
-        overflow-x: hidden;
+        background: var(--light-bg);
+        color: var(--text);
+        line-height: 1.7;
     }
 
-    /* Subtle background texture */
-    body::before {
+    /* Header */
+    .campaign-header {
+        background: linear-gradient(135deg, var(--dark) 0%, #1a2a4a 100%);
+        color: white;
+        padding: 60px 20px 80px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .campaign-header::before {
         content: '';
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background-image: 
-            radial-gradient(circle at 20% 30%, rgba(0, 232, 150, 0.08) 0%, transparent 50%),
-            radial-gradient(circle at 80% 70%, rgba(0, 232, 150, 0.05) 0%, transparent 40%);
-        pointer-events: none;
-        z-index: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.5;
     }
 
-    .card {
-        width: 100%;
-        max-width: 420px;
-        background: var(--cream);
-        border-radius: 28px;
-        overflow: hidden;
-        box-shadow: 
-            0 0 0 1px rgba(0, 232, 150, 0.2),
-            0 25px 80px rgba(0, 0, 0, 0.5),
-            0 10px 30px rgba(0, 0, 0, 0.3);
+    .header-content {
         position: relative;
         z-index: 1;
+        max-width: 800px;
+        margin: 0 auto;
     }
 
-    /* Carousel Section */
-    .carousel-wrapper {
-        position: relative;
-        width: 100%;
-        background: var(--slate);
-        padding: 32px 24px;
-    }
-
-    .carousel-inner {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 1 / 0.85;
-        border-radius: 16px;
-        overflow: hidden;
-        background: var(--charcoal);
-        box-shadow: 
-            inset 0 2px 4px rgba(0, 0, 0, 0.3),
-            0 8px 24px rgba(0, 0, 0, 0.4);
-    }
-
-    .carousel-track {
-        display: flex;
-        height: 100%;
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .slide {
-        min-width: 100%;
-        height: 100%;
-        display: flex;
+    .make100-badge {
+        display: inline-flex;
         align-items: center;
-        justify-content: center;
-        padding: 24px;
+        gap: 8px;
+        background: rgba(5, 206, 120, 0.15);
+        border: 1px solid var(--kickstarter-green);
+        color: var(--kickstarter-green);
+        padding: 8px 20px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 24px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
-    .slide-content {
-        text-align: center;
-        color: white;
-    }
-
-    .slide-icon {
-        font-size: 52px;
+    .campaign-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: clamp(2.2rem, 6vw, 3.5rem);
+        font-weight: 700;
         margin-bottom: 20px;
-        display: block;
-        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
-    }
-
-    .slide-headline {
-        font-family: 'Archivo Black', sans-serif;
-        font-size: 1.6em;
-        margin-bottom: 12px;
-        letter-spacing: -0.02em;
         line-height: 1.1;
     }
 
-    .slide-headline .accent {
-        color: var(--mint);
+    .campaign-title .highlight {
+        color: var(--itabs-blue);
     }
 
-    .slide-text {
-        font-size: 1em;
-        color: rgba(255, 255, 255, 0.7);
-        line-height: 1.5;
+    .campaign-subtitle {
+        font-size: 1.2rem;
+        color: rgba(255,255,255,0.8);
+        max-width: 550px;
+        margin: 0 auto 30px;
     }
 
-    /* Navigation dots */
-    .dots {
-        position: absolute;
-        bottom: 44px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 10px;
-        z-index: 10;
-    }
-
-    .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.3);
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .dot.active {
-        background: var(--mint);
-        transform: scale(1.3);
-        box-shadow: 0 0 12px var(--mint);
-    }
-
-    /* Floating iTabs button */
-    .itabs-float {
-        position: absolute;
-        top: 44px;
-        right: 36px;
-        width: 52px;
-        height: 52px;
-        background: var(--mint);
-        border-radius: 50%;
-        display: flex;
+    .reward-callout {
+        display: inline-flex;
         align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 20;
-        box-shadow: 
-            0 4px 20px rgba(0, 232, 150, 0.5),
-            inset 0 1px 0 rgba(255, 255, 255, 0.3);
-        border: 3px solid var(--cream);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .itabs-float:hover {
-        transform: scale(1.12) rotate(-5deg);
-        box-shadow: 
-            0 8px 30px rgba(0, 232, 150, 0.6),
-            inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    }
-
-    .itabs-float span {
-        color: var(--charcoal);
-        font-size: 28px;
-        font-weight: 700;
-        font-style: italic;
-        font-family: Georgia, serif;
-    }
-
-    /* Progress indicator */
-    .slide-counter {
-        position: absolute;
-        bottom: 44px;
-        right: 36px;
-        background: var(--charcoal);
-        color: var(--mint);
-        padding: 6px 14px;
-        border-radius: 20px;
-        font-size: 13px;
+        gap: 12px;
+        background: linear-gradient(135deg, var(--itabs-blue) 0%, var(--itabs-blue-dark) 100%);
+        padding: 16px 32px;
+        border-radius: 50px;
+        font-size: 1.1rem;
         font-weight: 600;
-        z-index: 10;
-        letter-spacing: 0.05em;
+        box-shadow: 0 10px 40px rgba(0, 102, 204, 0.4);
+    }
+
+    .reward-callout .number {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
     }
 
     /* Main Content */
-    .content {
-        padding: 28px 24px;
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
     }
 
-    .badge {
-        display: inline-block;
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 2.5px;
-        color: var(--mint-dark);
+    .content-section {
+        background: white;
+        border-radius: 20px;
+        padding: 50px;
+        margin-top: -40px;
+        position: relative;
+        box-shadow: 0 10px 60px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.6rem;
         font-weight: 700;
-        margin-bottom: 10px;
-        background: rgba(0, 232, 150, 0.1);
-        padding: 6px 12px;
-        border-radius: 6px;
+        color: var(--dark);
+        margin: 50px 0 24px;
     }
 
-    .title {
-        font-family: 'Archivo Black', sans-serif;
-        font-size: 2em;
-        color: var(--charcoal);
-        margin-bottom: 8px;
-        letter-spacing: -0.02em;
-        line-height: 1.1;
+    h2:first-of-type {
+        margin-top: 0;
     }
 
-    .subtitle {
-        font-size: 1.05em;
-        color: var(--warm-gray);
-        margin-bottom: 24px;
-        line-height: 1.4;
+    p {
+        margin-bottom: 20px;
+        font-size: 1.05rem;
     }
 
-    /* Feature Tags */
-    .features {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 28px;
-    }
-
-    .feature {
-        display: flex;
+    /* iTabs Button */
+    .itab {
+        display: inline-flex;
         align-items: center;
-        gap: 8px;
-        padding: 12px 16px;
-        background: var(--cream);
-        border: 2px solid #E8E6E3;
-        border-radius: 12px;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        background: var(--itabs-blue);
+        color: white;
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 700;
+        font-style: italic;
+        font-family: Georgia, serif;
         cursor: pointer;
+        margin-left: 4px;
+        vertical-align: middle;
+        position: relative;
         transition: all 0.2s ease;
-        font-size: 0.9em;
+        box-shadow: 0 2px 10px rgba(0, 102, 204, 0.35);
+    }
+
+    .itab:hover {
+        transform: scale(1.2);
+        box-shadow: 0 4px 15px rgba(0, 102, 204, 0.5);
+    }
+
+    .itab::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: var(--itabs-blue);
+        animation: pulse 2.5s infinite;
+        z-index: -1;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); opacity: 0.5; }
+        70% { transform: scale(1.8); opacity: 0; }
+        100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    /* Vibe Coder Box */
+    .vibe-box {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        border-radius: 16px;
+        padding: 35px;
+        margin: 40px 0;
+        color: white;
+    }
+
+    .vibe-box h3 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        color: #a78bfa;
+    }
+
+    .vibe-box p {
+        color: rgba(255,255,255,0.85);
+        margin-bottom: 16px;
+    }
+
+    .vibe-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0 0 0;
+    }
+
+    .vibe-box li {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        color: rgba(255,255,255,0.9);
+        font-size: 0.95rem;
+    }
+
+    .vibe-box li:last-child {
+        border-bottom: none;
+    }
+
+    .vibe-box li span {
+        color: #a78bfa;
+        margin-right: 10px;
+    }
+
+    /* Competition Box */
+    .competition-box {
+        background: #f8fafc;
+        border: 2px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 30px;
+        margin: 40px 0;
+    }
+
+    .competition-box h3 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.2rem;
+        color: var(--dark);
+        margin-bottom: 16px;
+    }
+
+    .competition-box p {
+        color: var(--text);
+        margin-bottom: 12px;
+    }
+
+    .competition-list {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0 0 0;
+    }
+
+    .competition-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid #e2e8f0;
+        font-size: 0.95rem;
+    }
+
+    .competition-list li:last-child {
+        border-bottom: none;
+    }
+
+    .competition-list .label {
         font-weight: 600;
-        color: var(--slate);
+        color: var(--dark);
+        min-width: 80px;
     }
 
-    .feature:hover {
-        border-color: var(--mint);
-        background: #F0FDF9;
-        transform: translateY(-2px);
+    /* How It Works */
+    .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin: 30px 0;
     }
 
-    .feature .i-btn {
-        width: 24px;
-        height: 24px;
-        background: var(--mint);
+    .step {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        padding: 16px;
+        background: #f8fafc;
+        border-radius: 12px;
+    }
+
+    .step-number {
+        width: 36px;
+        height: 36px;
+        background: var(--itabs-blue);
+        color: white;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 13px;
+        font-family: 'Space Grotesk', sans-serif;
         font-weight: 700;
-        font-style: italic;
-        font-family: Georgia, serif;
-        color: var(--charcoal);
+        font-size: 1rem;
         flex-shrink: 0;
     }
 
-    /* CTA Stack */
-    .cta-stack {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
+    .step-content {
+        padding-top: 6px;
     }
 
-    .cta-main {
-        display: flex;
+    .step-content p {
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    /* Simple CTA */
+    .cta-section {
+        text-align: center;
+        margin: 50px 0;
+        padding: 40px;
+        background: #f8fafc;
+        border-radius: 16px;
+    }
+
+    .cta-section p {
+        font-size: 1.1rem;
+        margin-bottom: 24px;
+        color: var(--text);
+    }
+
+    .cta-button {
+        display: inline-flex;
         align-items: center;
-        justify-content: center;
-        gap: 14px;
-        padding: 18px 24px;
-        background: var(--mint);
-        color: var(--charcoal);
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 1.1em;
-        border-radius: 14px;
-        transition: all 0.3s ease;
-        box-shadow: 
-            0 4px 16px rgba(0, 232, 150, 0.35),
-            inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    }
-
-    .cta-main:hover {
-        transform: translateY(-3px);
-        box-shadow: 
-            0 8px 28px rgba(0, 232, 150, 0.45),
-            inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    }
-
-    .price {
-        background: rgba(0, 0, 0, 0.15);
-        padding: 5px 14px;
-        border-radius: 8px;
-        font-size: 0.9em;
-    }
-
-    .cta-alt {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         gap: 10px;
-        padding: 16px 24px;
-        background: transparent;
-        border: 2px solid #E8E6E3;
-        color: var(--warm-gray);
-        text-decoration: none;
+        background: var(--itabs-blue);
+        color: white;
+        padding: 16px 40px;
+        border-radius: 50px;
+        font-size: 1.1rem;
         font-weight: 600;
-        font-size: 0.95em;
-        border-radius: 14px;
-        transition: all 0.3s ease;
+        text-decoration: none;
+        transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .cta-alt:hover {
-        border-color: var(--slate);
-        color: var(--charcoal);
-        background: #F9F8F7;
+    .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 102, 204, 0.3);
+    }
+
+    /* Demo Banner */
+    .demo-banner {
+        background: var(--itabs-blue);
+        color: white;
+        padding: 12px 20px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .demo-banner .itab-mini {
+        display: inline-flex;
+        width: 18px;
+        height: 18px;
+        background: white;
+        color: var(--itabs-blue);
+        border-radius: 50%;
+        font-size: 11px;
+        font-weight: bold;
+        font-style: italic;
+        align-items: center;
+        justify-content: center;
+        margin: 0 4px;
     }
 
     /* Footer */
     .footer {
-        padding: 18px 24px;
-        border-top: 1px solid #E8E6E3;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--text-light);
+        font-size: 0.85rem;
     }
 
-    .made-in {
-        font-size: 0.85em;
-        color: var(--warm-gray);
+    .footer a {
+        color: var(--itabs-blue);
+        text-decoration: none;
     }
 
-    .powered-by {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.8em;
-        color: var(--warm-gray);
-        cursor: pointer;
-        padding: 8px 14px;
-        border-radius: 20px;
-        transition: all 0.2s ease;
-        background: #F9F8F7;
-    }
-
-    .powered-by:hover {
-        background: #F0FDF9;
-        color: var(--mint-dark);
-    }
-
-    .mini-i {
-        width: 22px;
-        height: 22px;
-        background: var(--mint);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 2px 8px rgba(0, 232, 150, 0.4);
-    }
-
-    .mini-i span {
-        color: var(--charcoal);
-        font-size: 11px;
-        font-weight: 700;
-        font-style: italic;
-        font-family: Georgia, serif;
-    }
-
-    /* Popup System */
-    .overlay {
+    /* Popup Styles */
+    .popup-overlay {
         display: none;
         position: fixed;
         top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(26, 31, 37, 0.85);
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.6);
         z-index: 1000;
+        backdrop-filter: blur(4px);
+        animation: fadeIn 0.2s ease;
+    }
+
+    .popup-overlay.active {
+        display: flex;
         align-items: center;
         justify-content: center;
         padding: 20px;
-        backdrop-filter: blur(8px);
     }
 
-    .overlay.active {
-        display: flex;
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 
     .popup {
-        background: var(--cream);
-        border-radius: 24px;
-        max-width: 400px;
+        background: white;
+        border-radius: 20px;
+        max-width: 480px;
         width: 100%;
-        max-height: 85vh;
-        overflow: hidden;
-        box-shadow: 
-            0 0 0 1px rgba(0, 232, 150, 0.2),
-            0 30px 80px rgba(0, 0, 0, 0.5);
-        position: relative;
-        animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 25px 80px rgba(0,0,0,0.35);
+        animation: slideUp 0.3s ease;
     }
 
-    @keyframes popIn {
-        from {
-            opacity: 0;
-            transform: scale(0.9) translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-        }
+    @keyframes slideUp {
+        from { transform: translateY(40px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
     }
 
-    .popup-head {
-        background: var(--charcoal);
-        padding: 24px;
-        position: relative;
-    }
-
-    .popup-head h3 {
-        font-family: 'Archivo Black', sans-serif;
+    .popup-header {
+        background: linear-gradient(135deg, var(--itabs-blue) 0%, var(--itabs-blue-dark) 100%);
         color: white;
-        font-size: 1.35em;
-        margin-bottom: 4px;
-        padding-right: 40px;
-        letter-spacing: -0.01em;
+        padding: 24px;
+        border-radius: 20px 20px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    .popup-head .sub {
-        color: rgba(255, 255, 255, 0.6);
-        font-size: 0.95em;
+    .popup-header h3 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.15rem;
+        font-weight: 600;
     }
 
-    .close-btn {
-        position: absolute;
-        top: 16px;
-        right: 16px;
+    .popup-close {
+        background: rgba(255,255,255,0.15);
+        border: none;
+        color: white;
         width: 36px;
         height: 36px;
-        background: rgba(255, 255, 255, 0.1);
-        border: none;
         border-radius: 50%;
-        color: white;
-        font-size: 22px;
         cursor: pointer;
+        font-size: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: background 0.2s;
     }
 
-    .close-btn:hover {
-        background: rgba(255, 255, 255, 0.2);
+    .popup-close:hover {
+        background: rgba(255,255,255,0.25);
     }
 
     .popup-body {
-        padding: 24px;
-        max-height: 50vh;
-        overflow-y: auto;
+        padding: 28px;
     }
 
-    .section {
-        margin-bottom: 22px;
+    .popup-body p {
+        margin-bottom: 16px;
+        font-size: 0.98rem;
     }
 
-    .section:last-child {
-        margin-bottom: 0;
+    .popup-body ul {
+        margin: 16px 0;
+        padding-left: 0;
+        list-style: none;
     }
 
-    .section h4 {
-        color: var(--charcoal);
-        font-size: 1.05em;
-        font-weight: 700;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
+    .popup-body li {
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+        padding-left: 28px;
+        position: relative;
     }
 
-    .section p {
-        color: var(--warm-gray);
-        font-size: 0.95em;
-        line-height: 1.7;
+    .popup-body li::before {
+        content: '→';
+        position: absolute;
+        left: 0;
+        color: var(--itabs-blue);
+        font-weight: bold;
     }
 
-    .section ul {
-        color: var(--warm-gray);
-        font-size: 0.95em;
-        line-height: 1.9;
-        padding-left: 22px;
+    .popup-highlight {
+        background: var(--itabs-glow);
+        border-left: 3px solid var(--itabs-blue);
+        padding: 14px 18px;
+        border-radius: 0 10px 10px 0;
+        margin: 20px 0;
     }
 
-    .popup-foot {
-        padding: 20px 24px;
-        background: #F9F8F7;
+    .popup-highlight strong {
+        color: var(--itabs-blue);
     }
 
-    .popup-foot a {
-        display: block;
-        width: 100%;
-        padding: 16px;
-        background: var(--mint);
-        color: var(--charcoal);
-        text-decoration: none;
-        border-radius: 12px;
-        font-weight: 700;
-        font-size: 1.05em;
-        text-align: center;
-        transition: all 0.2s ease;
-        box-shadow: 0 4px 12px rgba(0, 232, 150, 0.3);
-    }
-
-    .popup-foot a:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0, 232, 150, 0.4);
-    }
-
-    /* Mobile tweaks */
-    @media (max-width: 480px) {
-        body {
-            padding: 16px;
+    /* Mobile */
+    @media (max-width: 600px) {
+        .content-section {
+            padding: 30px 24px;
         }
 
-        .card {
-            border-radius: 24px;
+        .campaign-header {
+            padding: 40px 20px 60px;
         }
 
-        .title {
-            font-size: 1.7em;
+        .vibe-box, .competition-box {
+            padding: 24px;
         }
 
-        .slide-icon {
-            font-size: 44px;
-        }
-
-        .slide-headline {
-            font-size: 1.4em;
+        .cta-section {
+            padding: 30px 20px;
         }
     }
 </style>
@@ -584,346 +535,339 @@
 
 </head>
 <body>
+    <!-- Demo Banner -->
+    <div class="demo-banner">
+        Click the blue <span class="itab-mini">i</span> buttons to see iTabs in action
+    </div>
 
-<div class="card">
-    <!-- Carousel -->
-    <div class="carousel-wrapper">
-        <div class="carousel-inner">
-            <div class="carousel-track" id="track">
-                <!-- Slide 1 -->
-                <div class="slide">
-                    <div class="slide-content">
-                        <span class="slide-icon">📜</span>
-                        <div class="slide-headline">Your campaign is a <span class="accent">wall of text</span></div>
-                        <div class="slide-text">People scroll. They don't read.<br>You lose backers.</div>
-                    </div>
+```
+<!-- Campaign Header -->
+<header class="campaign-header">
+    <div class="header-content">
+        <div class="make100-badge">
+            <span>🎯</span> Make 100 · January 2026
+        </div>
+        <h1 class="campaign-title">
+            <span class="highlight">iTabs</span><br>
+            Revenge of the Vibe Coders
+        </h1>
+        <p class="campaign-subtitle">
+            You don't need a developer. You don't need permission. You just need a problem worth solving.
+        </p>
+        <div class="reward-callout">
+            <span class="number">100</span>
+            <span>Free iTabs for Creators</span>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="container">
+    <div class="content-section">
+
+        <h2>What's an iTabs?<span class="itab" data-popup="what-is-itabs">i</span></h2>
+        
+        <p>
+            It's that little blue button you just saw. Click it, get the explanation you need, keep going.
+        </p>
+        
+        <p>
+            Works on mobile.<span class="itab" data-popup="mobile">i</span> Handles complex info, not just definitions. Doesn't disappear when you move your finger.
+        </p>
+
+        <p>
+            People who need more context get it. People who don't aren't slowed down.
+        </p>
+
+        <div class="vibe-box">
+            <h3>Revenge of the Vibe Coders</h3>
+            <p>
+                This wasn't built by a dev team. No computer science degree. No startup funding. Just someone who kept hitting confusing content and thought "there has to be a better way."
+            </p>
+            <p>
+                Built with AI tools and stubbornness.<span class="itab" data-popup="vibe-coding">i</span>
+            </p>
+            <ul>
+                <li><span>→</span> Normal people can build real things now</li>
+                <li><span>→</span> The gatekeepers lost</li>
+                <li><span>→</span> You don't need permission</li>
+            </ul>
+        </div>
+
+        <h2>The Offer</h2>
+
+        <p>
+            100 free iTabs for 100 Make 100 creators.
+        </p>
+
+        <p>
+            You tell me about your project. I build you an iTabs that explains the confusing bits to your backers. You put it on your campaign page. Done.
+        </p>
+
+        <p>
+            No cost. No catch. Take it or leave it.<span class="itab" data-popup="why-free">i</span>
+        </p>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <p>You're launching a Make 100 project in January 2026</p>
                 </div>
-                <!-- Slide 2 -->
-                <div class="slide">
-                    <div class="slide-content">
-                        <span class="slide-icon">👆</span>
-                        <div class="slide-headline">Make them <span class="accent">tap to learn</span></div>
-                        <div class="slide-text">Images first. Info on demand.<br>They choose to engage.</div>
-                    </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <p>You want help explaining your project to backers</p>
                 </div>
-                <!-- Slide 3 -->
-                <div class="slide">
-                    <div class="slide-content">
-                        <span class="slide-icon">🤖</span>
-                        <div class="slide-headline">AI writes it <span class="accent">in 3 minutes</span></div>
-                        <div class="slide-text">Paste your URL. Add images.<br>Click one button. Done.</div>
-                    </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <p>I send you an iTabs built for your campaign</p>
                 </div>
-                <!-- Slide 4 -->
-                <div class="slide">
-                    <div class="slide-content">
-                        <span class="slide-icon">🎯</span>
-                        <div class="slide-headline">Engaged visitors <span class="accent">become backers</span></div>
-                        <div class="slide-text">People who tap are interested.<br>Interest converts to pledges.</div>
-                    </div>
-                </div>
-                <!-- Slide 5 -->
-                <div class="slide">
-                    <div class="slide-content">
-                        <span class="slide-icon">💸</span>
-                        <div class="slide-headline"><span class="accent">$9.99</span> one time</div>
-                        <div class="slide-text">No subscriptions. Use forever.<br>Unlimited campaigns.</div>
-                    </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <p>You use it or you don't. No hard feelings either way.</p>
                 </div>
             </div>
         </div>
 
-```
-    <!-- Dots -->
-    <div class="dots">
-        <div class="dot active" onclick="goTo(0)"></div>
-        <div class="dot" onclick="goTo(1)"></div>
-        <div class="dot" onclick="goTo(2)"></div>
-        <div class="dot" onclick="goTo(3)"></div>
-        <div class="dot" onclick="goTo(4)"></div>
-    </div>
+        <h2>The Competition<span class="itab" data-popup="competition">i</span></h2>
 
-    <!-- Counter -->
-    <div class="slide-counter" id="counter">1 / 5</div>
-
-    <!-- Floating i button -->
-    <div class="itabs-float" onclick="showPopup('main')">
-        <span>i</span>
-    </div>
-</div>
-
-<!-- Content -->
-<div class="content">
-    <div class="badge">For Kickstarter Founders</div>
-    <h1 class="title">iTabs Generator</h1>
-    <p class="subtitle">Turn your campaign into something people actually tap on</p>
-
-    <!-- Feature pills -->
-    <div class="features">
-        <div class="feature" onclick="showPopup('what')">
-            <span class="i-btn">i</span>
-            What is this?
+        <div class="competition-box">
+            <h3>Free to enter. No judges. Backers decide.</h3>
+            <ul class="competition-list">
+                <li>
+                    <span class="label">Who:</span>
+                    <span>Any Make 100 creator using iTabs</span>
+                </li>
+                <li>
+                    <span class="label">How:</span>
+                    <span>Whoever gets furthest past their funding goal<span class="itab" data-popup="scoring">i</span></span>
+                </li>
+                <li>
+                    <span class="label">Cost:</span>
+                    <span>Nothing</span>
+                </li>
+                <li>
+                    <span class="label">Twist:</span>
+                    <span>I'm in it too. You might beat me with my own tool.<span class="itab" data-popup="twist">i</span></span>
+                </li>
+            </ul>
         </div>
-        <div class="feature" onclick="showPopup('how')">
-            <span class="i-btn">i</span>
-            How it works
-        </div>
-        <div class="feature" onclick="showPopup('who')">
-            <span class="i-btn">i</span>
-            Who built this?
-        </div>
-    </div>
 
-    <!-- CTAs -->
-    <div class="cta-stack">
-        <a href="https://itabsgenerator.gumroad.com/l/kickstarter" target="_blank" class="cta-main">
-            Get iTabs Generator
-            <span class="price">$9.99</span>
-        </a>
-        <a href="https://itabs.ai" target="_blank" class="cta-alt">
-            🆓 Try the free GoFundMe version first
-        </a>
+        <p>
+            Everyone's already trying to hit their funding goal. The competition just measures what's already happening. No extra pressure. No extra work.
+        </p>
+
+        <p>
+            Even getting halfway is a win. Your campaign was clearer than it would have been without iTabs.
+        </p>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <p>Launching something in Make 100?<br>Want an iTabs for your campaign?</p>
+            <a href="#" class="cta-button">
+                <span>I'm In</span>
+            </a>
+        </div>
+
+        <p style="text-align: center; color: var(--text-light); font-size: 0.95rem;">
+            Or don't. Either way, good luck with your project.
+        </p>
+
     </div>
-</div>
+</main>
 
 <!-- Footer -->
-<div class="footer">
-    <span class="made-in">Made in Perth 🇦🇺</span>
-    <div class="powered-by" onclick="showPopup('meta')">
-        <div class="mini-i">
-            <span>i</span>
-        </div>
-        Powered by iTabs
-    </div>
-</div>
-```
+<footer class="footer">
+    <p>iTabs · Make 100 · January 2026</p>
+    <p><a href="https://itabs.ai">itabs.ai</a></p>
+</footer>
 
-</div>
-
-<!-- POPUPS -->
-
-<!-- Main -->
-
-<div class="overlay" id="popup-main" onclick="hidePopup(event, 'main')">
-    <div class="popup" onclick="event.stopPropagation()">
-        <div class="popup-head">
-            <button class="close-btn" onclick="closePopup('main')">×</button>
-            <h3>Kickstarter iTabs Generator</h3>
-            <div class="sub">Your campaign, but actually readable</div>
+<!-- Popups -->
+<div class="popup-overlay" id="popup-what-is-itabs">
+    <div class="popup">
+        <div class="popup-header">
+            <h3>iTabs</h3>
+            <button class="popup-close" onclick="closePopup('what-is-itabs')">×</button>
         </div>
         <div class="popup-body">
-            <div class="section">
-                <h4>📜 The Problem</h4>
-                <p>Kickstarter campaigns are walls of text. Long descriptions, feature lists, technical specs. People scroll past without reading because it's overwhelming.</p>
+            <p><strong>Information Enhancement Technology</strong></p>
+            <p>A clickable button that reveals helpful info exactly when someone needs it.</p>
+            <p>Unlike tooltips:</p>
+            <ul>
+                <li>Works on mobile (tap, don't hover)</li>
+                <li>Can hold rich content - stats, examples, images</li>
+                <li>Stays open until you close it</li>
+            </ul>
+            <div class="popup-highlight">
+                <strong>Simple version:</strong> Click the "i", get the info, keep reading.
             </div>
-            <div class="section">
-                <h4>👆 The Fix</h4>
-                <p>Show your best images first. Add a small "i" button. People who want to know more will tap it. Those who tap are already interested—they're more likely to back.</p>
-            </div>
-            <div class="section">
-                <h4>📦 What You Get</h4>
-                <ul>
-                    <li>AI-powered description writer</li>
-                    <li>Auto-playing image slideshow</li>
-                    <li>Works on mobile (where backers are)</li>
-                    <li>Copy & paste anywhere</li>
-                    <li>Use on unlimited campaigns</li>
-                </ul>
-            </div>
-        </div>
-        <div class="popup-foot">
-            <a href="https://itabsgenerator.gumroad.com/l/kickstarter" target="_blank">Get It Now – $9.99 →</a>
         </div>
     </div>
 </div>
 
-<!-- What is this -->
-
-<div class="overlay" id="popup-what" onclick="hidePopup(event, 'what')">
-    <div class="popup" onclick="event.stopPropagation()">
-        <div class="popup-head">
-            <button class="close-btn" onclick="closePopup('what')">×</button>
-            <h3>What is iTabs?</h3>
-            <div class="sub">Information Enhancement Technology</div>
+<div class="popup-overlay" id="popup-mobile">
+    <div class="popup">
+        <div class="popup-header">
+            <h3>Mobile Friendly</h3>
+            <button class="popup-close" onclick="closePopup('mobile')">×</button>
         </div>
         <div class="popup-body">
-            <div class="section">
-                <h4>💡 The Concept</h4>
-                <p>Instead of dumping all your info on people at once, you show them the highlights. If they want more, they tap. Simple psychology: people engage more when they choose to.</p>
+            <p>Most tooltips break on phones. They rely on "hover" - something you can't do on a touchscreen.</p>
+            <p>iTabs uses tap/click instead. Works everywhere:</p>
+            <ul>
+                <li>Phones</li>
+                <li>Tablets</li>
+                <li>Desktops</li>
+                <li>Whatever comes next</li>
+            </ul>
+            <div class="popup-highlight">
+                Most crowdfunding browsing happens on mobile. If your explanations don't work there, they don't work.
             </div>
-            <div class="section">
-                <h4>📱 What It Looks Like</h4>
-                <p>A beautiful slideshow of your product images with a small "i" button. Tap it, a popup explains everything clearly—what it is, why back it, how it works.</p>
-            </div>
-            <div class="section">
-                <h4>🧠 Why It Works</h4>
-                <p>You just experienced it. You tapped. You're reading this. That's the point—people who choose to learn more are already interested.</p>
-            </div>
-        </div>
-        <div class="popup-foot">
-            <a href="https://itabsgenerator.gumroad.com/l/kickstarter" target="_blank">Try It Yourself →</a>
         </div>
     </div>
 </div>
 
-<!-- How it works -->
-
-<div class="overlay" id="popup-how" onclick="hidePopup(event, 'how')">
-    <div class="popup" onclick="event.stopPropagation()">
-        <div class="popup-head">
-            <button class="close-btn" onclick="closePopup('how')">×</button>
-            <h3>How It Works</h3>
-            <div class="sub">3 minutes, start to finish</div>
+<div class="popup-overlay" id="popup-vibe-coding">
+    <div class="popup">
+        <div class="popup-header">
+            <h3>Vibe Coding</h3>
+            <button class="popup-close" onclick="closePopup('vibe-coding')">×</button>
         </div>
         <div class="popup-body">
-            <div class="section">
-                <h4>Step 1: Paste Your URL</h4>
-                <p>Enter your Kickstarter campaign URL. The generator fetches your campaign details automatically.</p>
+            <p>Building things with AI tools instead of traditional coding skills.</p>
+            <p>You describe what you want. AI helps you build it. You refine until it works.</p>
+            <ul>
+                <li>No syntax memorisation</li>
+                <li>No computer science degree</li>
+                <li>No dev team required</li>
+            </ul>
+            <div class="popup-highlight">
+                <strong>The catch:</strong> You still need to know what problem you're solving. AI handles the how. You handle the why.
             </div>
-            <div class="section">
-                <h4>Step 2: Add 3-5 Images</h4>
-                <p>Upload your best product photos. These become an auto-playing slideshow that grabs attention.</p>
-            </div>
-            <div class="section">
-                <h4>Step 3: Click Generate</h4>
-                <p>AI reads your campaign and writes clear, compelling descriptions for each section. One button.</p>
-            </div>
-            <div class="section">
-                <h4>Step 4: Copy & Share</h4>
-                <p>Get the HTML code. Paste it anywhere—your campaign page, website, social media, emails.</p>
-            </div>
-        </div>
-        <div class="popup-foot">
-            <a href="https://itabsgenerator.gumroad.com/l/kickstarter" target="_blank">Get Started →</a>
         </div>
     </div>
 </div>
 
-<!-- Who built this -->
-
-<div class="overlay" id="popup-who" onclick="hidePopup(event, 'who')">
-    <div class="popup" onclick="event.stopPropagation()">
-        <div class="popup-head">
-            <button class="close-btn" onclick="closePopup('who')">×</button>
-            <h3>Who Built This?</h3>
-            <div class="sub">The story behind iTabs</div>
+<div class="popup-overlay" id="popup-why-free">
+    <div class="popup">
+        <div class="popup-header">
+            <h3>Why Free?</h3>
+            <button class="popup-close" onclick="closePopup('why-free')">×</button>
         </div>
         <div class="popup-body">
-            <div class="section">
-                <h4>👋 Hey, I'm Jon</h4>
-                <p>Boilermaker from Perth, Australia. I taught myself to build software using AI tools. No coding degree—just a problem I wanted to solve.</p>
+            <p>This is Make 100. Small projects, proof of concept.</p>
+            <p>If iTabs helps campaigns fund better, that's worth more than charging for it now.</p>
+            <ul>
+                <li>100 creators using it = 100 data points</li>
+                <li>Real campaigns, real results</li>
+                <li>If it doesn't help, it's not worth selling anyway</li>
+            </ul>
+            <div class="popup-highlight">
+                <strong>Simple:</strong> Prove it works first. Figure out the rest later.
             </div>
-            <div class="section">
-                <h4>🔧 What I Noticed</h4>
-                <p>Crowdfunding campaigns fail not because of bad products, but because people can't understand what they're backing. Too much text. Too overwhelming.</p>
-            </div>
-            <div class="section">
-                <h4>💡 What I Built</h4>
-                <p>iTabs makes information clear. Show the best stuff first. Let people dig deeper if they want. Works everywhere—crowdfunding, e-commerce, education.</p>
-            </div>
-            <div class="section">
-                <h4>📧 Questions?</h4>
-                <p>Email me: responses@itabs.ai</p>
-            </div>
-        </div>
-        <div class="popup-foot">
-            <a href="https://itabsgenerator.gumroad.com/l/kickstarter" target="_blank">Support an Indie Maker →</a>
         </div>
     </div>
 </div>
 
-<!-- Meta popup -->
-
-<div class="overlay" id="popup-meta" onclick="hidePopup(event, 'meta')">
-    <div class="popup" onclick="event.stopPropagation()">
-        <div class="popup-head">
-            <button class="close-btn" onclick="closePopup('meta')">×</button>
-            <h3>This Page IS an iTabs</h3>
-            <div class="sub">Meta, right?</div>
+<div class="popup-overlay" id="popup-competition">
+    <div class="popup">
+        <div class="popup-header">
+            <h3>The Competition</h3>
+            <button class="popup-close" onclick="closePopup('competition')">×</button>
         </div>
         <div class="popup-body">
-            <div class="section">
-                <h4>🎯 You Just Experienced It</h4>
-                <p>This entire page is an iTabs. The slideshow, the "i" buttons, these popups—that's all iTabs technology in action.</p>
-            </div>
-            <div class="section">
-                <h4>🤔 Did It Work?</h4>
-                <p>You clicked. You read. You're still here. That's the power of giving people control over how much they want to learn.</p>
-            </div>
-            <div class="section">
-                <h4>🚀 Want This For Your Campaign?</h4>
-                <p>The generator creates these automatically. Paste your URL, add images, let AI write the copy. Done in 3 minutes.</p>
+            <p>A free competition running alongside Make 100.</p>
+            <p>Everything's opposite to how competitions usually work:</p>
+            <ul>
+                <li>You don't apply - you get invited</li>
+                <li>No entry fee</li>
+                <li>No judges - backers decide</li>
+                <li>No limited spots</li>
+                <li>Organiser is competing too</li>
+            </ul>
+            <div class="popup-highlight">
+                <strong>The point:</strong> Everyone's already chasing their funding goal. This just measures what's happening anyway.
             </div>
         </div>
-        <div class="popup-foot">
-            <a href="https://itabsgenerator.gumroad.com/l/kickstarter" target="_blank">Create Your Own →</a>
+    </div>
+</div>
+
+<div class="popup-overlay" id="popup-scoring">
+    <div class="popup">
+        <div class="popup-header">
+            <h3>How Scoring Works</h3>
+            <button class="popup-close" onclick="closePopup('scoring')">×</button>
+        </div>
+        <div class="popup-body">
+            <p><strong>Funding percentage.</strong> How far past your goal you get.</p>
+            <p>Examples:</p>
+            <ul>
+                <li>Goal $1,000 → Raised $2,500 = 250%</li>
+                <li>Goal $5,000 → Raised $10,000 = 200%</li>
+            </ul>
+            <p>First one wins. You're competing against your own target, not someone else's budget.</p>
+            <div class="popup-highlight">
+                <strong>Even 50% is useful.</strong> You learned something. Your campaign was clearer. That's data.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="popup-overlay" id="popup-twist">
+    <div class="popup">
+        <div class="popup-header">
+            <h3>The Twist</h3>
+            <button class="popup-close" onclick="closePopup('twist')">×</button>
+        </div>
+        <div class="popup-body">
+            <p>I'm entering Make 100 with iTabs. Which means I'm in my own competition.</p>
+            <p>Someone could beat me using the tool I gave them for free.</p>
+            <div class="popup-highlight">
+                <strong>That's not losing.</strong> That's the best possible proof iTabs works. Can't buy marketing like that.
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-    // Carousel
-    let current = 0;
-    const total = 5;
-    let interval;
-
-    function update() {
-        document.getElementById('track').style.transform = `translateX(-${current * 100}%)`;
-        document.getElementById('counter').textContent = `${current + 1} / ${total}`;
-        document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
-    }
-
-    function goTo(i) {
-        current = i;
-        update();
-        resetInterval();
-    }
-
-    function next() {
-        current = (current + 1) % total;
-        update();
-    }
-
-    function resetInterval() {
-        clearInterval(interval);
-        interval = setInterval(next, 4000);
-    }
-
-    interval = setInterval(next, 4000);
-
-    // Touch swipe
-    let startX = 0;
-    const track = document.getElementById('track');
-    
-    track.addEventListener('touchstart', e => startX = e.changedTouches[0].screenX);
-    track.addEventListener('touchend', e => {
-        const diff = e.changedTouches[0].screenX - startX;
-        if (diff < -50) goTo((current + 1) % total);
-        else if (diff > 50) goTo((current - 1 + total) % total);
+    // iTabs click handlers
+    document.querySelectorAll('.itab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            const popupId = this.dataset.popup;
+            document.getElementById('popup-' + popupId).classList.add('active');
+        });
     });
 
-    // Popups
-    function showPopup(id) {
-        document.getElementById('popup-' + id).classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function hidePopup(e, id) {
-        if (e.target.id === 'popup-' + id) closePopup(id);
-    }
-
+    // Close popup
     function closePopup(id) {
         document.getElementById('popup-' + id).classList.remove('active');
-        document.body.style.overflow = '';
     }
 
-    document.addEventListener('keydown', e => {
+    // Close on overlay click
+    document.querySelectorAll('.popup-overlay').forEach(overlay => {
+        overlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
-            document.querySelectorAll('.overlay.active').forEach(o => o.classList.remove('active'));
-            document.body.style.overflow = '';
+            document.querySelectorAll('.popup-overlay.active').forEach(popup => {
+                popup.classList.remove('active');
+            });
         }
     });
 </script>
+```
 
 </body>
 </html>
